@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "test:watch": "jest --runInBand --watch",
     "test": "jest"
   },
   "keywords": [],
@@ -12,5 +14,9 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1"
   }
 }
