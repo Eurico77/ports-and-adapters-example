@@ -1,4 +1,4 @@
-import HashEncrypt from '../src/adapters/HashEncrypt';
+import HashEncrypt from '../src/adapters/auth/HashEncrypt';
 import { DatabaseInterface } from '../src/core/ports/Bd';
 import RegisterUser from '../src/core/usecases/RegisterUser';
 
@@ -16,7 +16,7 @@ describe('Register User Use Case', () => {
     expect(user).toHaveProperty('id');
   });
 
-  test('Deve registrar um com senha criptografada', () => {
+  test('Deve registrar um com senha criptografada', async () => {
     const database: DatabaseInterface = {
       insert(data) {
         const users = [];
@@ -25,8 +25,13 @@ describe('Register User Use Case', () => {
     };
     const bcryptHashAdapter = new HashEncrypt();
     const createUseUseCase = new RegisterUser(database, bcryptHashAdapter);
-    const user = createUseUseCase.execute('Eurico', 'eurico@mail.com', '1234');
-    const passIsHashed = bcryptHashAdapter.compare('1234', user.pass);
+    const user = await createUseUseCase.execute(
+      'Eurico',
+      'eurico@mail.com',
+      '1234'
+    );
+    const passIsHashed = bcryptHashAdapter.compare('1234', user.password!);
+    expect(user.password).toBeDefined();
     expect(passIsHashed).toBe(true);
   });
 });
