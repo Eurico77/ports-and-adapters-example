@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import EncryptHash from '@/core/ports/Encrypt';
+import EncryptHash from '@/core/Encrypt';
 
 export default class HashEncrypt implements EncryptHash {
   hash(value: string): string {
