@@ -1,4 +1,6 @@
-module.exports = {
+import type { Knex } from 'knex';
+
+const knexConfig: Knex.Config = {
   client: 'pg',
   connection: 'postgres://postgres:root@localhost:5432/ports_adapters',
   migrations: {
@@ -9,3 +11,5 @@ module.exports = {
     max: 10,
   },
 };
+
+export default knexConfig;
