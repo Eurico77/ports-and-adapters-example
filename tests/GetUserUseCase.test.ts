@@ -11,13 +11,12 @@ describe('GetUserUseCase', () => {
   test('Deve buscar um usuário', async () => {
     const database = new UserRepository();
     const getUserUseCase = new GetUserUseCase(database);
-
     await database.insert({
       email,
       name: 'Any_name',
       password: 'any_password',
     });
-    const user = await getUserUseCase.execute(email);
+    const user = await getUserUseCase.execute({ email });
     expect(user).toBeDefined();
     expect(user?.email).toEqual(email);
   });
