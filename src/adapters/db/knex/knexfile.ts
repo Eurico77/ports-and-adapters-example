@@ -1,8 +1,9 @@
+import 'dotenv/config';
 import type { Knex } from 'knex';
 
 const knexConfig: Knex.Config = {
   client: 'pg',
-  connection: 'postgres://postgres:root@localhost:5432/ports_adapters',
+  connection: process.env.BB_CONNECTION,
   migrations: {
     tableName: 'knex_migrations',
   },

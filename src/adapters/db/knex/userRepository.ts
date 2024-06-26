@@ -1,6 +1,6 @@
-import User from '@/core/User';
-import DatabaseInterface from '../../../core/Bd';
+import User from '@/core/user/User';
 import connection from './connection';
+import DatabaseInterface from '@/core/user/Bd';
 
 export default class UserRepository implements DatabaseInterface {
   async findByEmail(email: string): Promise<User | null> {
